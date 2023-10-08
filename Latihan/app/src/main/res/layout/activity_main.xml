@@ -3,15 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
-    android:background="@color/white"
-    tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-=======
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".MainActivity">
@@ -57,7 +49,4 @@
         app:itemIconTint="@color/orange"
         style="@style/AppBottomNavigation" />
 
-
-
->>>>>>> 2fadcdf (Tugas Kotlin)
 </androidx.constraintlayout.widget.ConstraintLayout>
