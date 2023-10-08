@@ -1,0 +1,21 @@
+<!-- custom_bottom_nav_item_text.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state (orange color) -->
+    <item android:state_checked="true" android:color="#F28705" />
+
+    <!-- Default state (white text with orange stroke) -->
+    <item>
+        <layer-list>
+            <!-- Background (white color) -->
+            <item android:drawable="@android:color/white" />
+            <!-- Stroke (orange color) -->
+            <item android:right="2dp" android:left="2dp" android:top="2dp">
+                <shape android:shape="rectangle">
+                    <stroke
+                        android:color="#F28705"
+                        android:width="2dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

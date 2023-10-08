@@ -4,4 +4,9 @@
         <item name="android:scaleX">0.4</item>
         <item name="android:scaleY">0.4</item>
     </style>
+
+    <style name="AppBottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
 </resources>

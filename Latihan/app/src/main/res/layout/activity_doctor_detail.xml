@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <LinearLayout
+=======
+<androidx.constraintlayout.widget.ConstraintLayout
+>>>>>>> 2fadcdf (Tugas Kotlin)
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +11,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
+<<<<<<< HEAD
     android:padding="16dp"
     tools:context=".DoctorDetailActivity">
 
@@ -119,3 +124,148 @@
         />
 
 </LinearLayout>
+=======
+    tools:context=".DoctorDetailActivity">
+
+    <include
+        android:id="@+id/navbarUpper"
+        layout="@layout/navbar_upper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="1000dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="50dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="16dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="6dp">
+
+                <ImageView
+                    android:id="@+id/cover"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/aji"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="apa"/>
+
+            </androidx.cardview.widget.CardView>
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/SmallRatingBar"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:rating="3.5" />
+
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="apa"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:lines="1"/>
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="apa"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="Nama"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/name"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="apa"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instansi"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/instance"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="apa"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jam Operasional"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/schedule"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="apa"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/bt_consultation"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="130dp"
+                android:backgroundTint="#F28705"
+                android:textColor="@color/white"
+                android:text="Konsultasi"
+                />
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+>>>>>>> 2fadcdf (Tugas Kotlin)
