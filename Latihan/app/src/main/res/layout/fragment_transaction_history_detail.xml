@@ -51,37 +51,6 @@
                     android:contentDescription="apa"/>
 
             </androidx.cardview.widget.CardView>
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@style/SmallRatingBar"
-                android:layout_width="240dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:numStars="5"
-                android:stepSize="0.1"
-                android:rating="3.5" />
-
-
-            <TextView
-                android:id="@+id/price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="apa"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:lines="1"/>
-
-            <TextView
-                android:id="@+id/duration"
-                android:layout_marginTop="4dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="apa"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:lines="1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -89,16 +58,16 @@
                 android:layout_marginTop="32dp"
                 android:text="Nama"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/name"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="apa"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:text="Drh. Aji Kusuma"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_marginTop="16dp"
@@ -106,46 +75,100 @@
                 android:layout_height="wrap_content"
                 android:text="Instansi"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textSize="18sp"/>
             <TextView
                 android:id="@+id/instance"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="apa"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:text="OJ Pet Care, Batam"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jam Operasional"
+                android:text="Waktu konsultasi"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textSize="18sp"/>
             <TextView
-                android:id="@+id/schedule"
+                android:id="@+id/date"
                 android:layout_marginTop="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="apa"
+                android:text="Senin, 3 Oktober 2023"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/time"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19:00-20:00"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pembayaran"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="18sp"
+                android:drawableRight="@drawable/ic_diskusi"/>
+            <TextView
+                android:id="@+id/price"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp130.000"
+                android:textColor="@color/orange"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="240dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/orange"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:rating="3.5" />
 
             <Button
-                android:id="@+id/bt_consultation"
+                android:id="@+id/bt_consultationHistory"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="#F28705"
                 android:textColor="@color/white"
-                android:text="Konsultasi"
+                android:textSize="16dp"
+                android:text="Lihat Riwayat Konsultasi"
+                android:onClick="onClick"
                 />
-        </LinearLayout>
 
+            <Button
+                android:id="@+id/bt_newSchedule"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#F28705"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:text="Buat Jadwal Baru"
+                android:onClick="onClick"
+                />
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

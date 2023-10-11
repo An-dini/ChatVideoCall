@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/berandaFragment">
+
+    <fragment
+        android:id="@+id/berandaFragment"
+        android:name="com.example.latihan.BerandaFragment"
+        android:label="fragment_beranda"
+        tools:layout="@layout/fragment_beranda" />
+    <fragment
+        android:id="@+id/doctorFragment"
+        android:name="com.example.latihan.DoctorFragment"
+        android:label="fragment_doctor"
+        tools:layout="@layout/fragment_doctor" >
+        <action
+            android:id="@+id/action_doctorFragment_to_doctorDetailActivity"
+            app:destination="@id/doctorDetailActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/diskusiFragment"
+        android:name="com.example.latihan.DiskusiFragment"
+        android:label="fragment_diskusi"
+        tools:layout="@layout/fragment_diskusi" />
+
+    <fragment
+        android:id="@+id/transactionHistoryFragment"
+        android:name="com.example.latihan.TransactionHistoryFragment"
+        android:label="fragment_transaction_history">
+        <action
+            android:id="@+id/actionTransactionHistoryDetail"
+            app:destination="@id/transactionHistoryDetail">
+        </action>
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="com.example.latihan.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
+    <activity
+        android:id="@+id/doctorDetailActivity"
+        android:name="com.example.latihan.DoctorDetailActivity"
+        android:label="history_consultation_detail"
+        tools:layout="@layout/history_consultation_detail" />
+    <activity
+        android:id="@+id/historyConsultationDetailActivity2"
+        android:name="com.example.latihan.HistoryConsultationDetailActivity"
+        android:label="HistoryConsultationDetailActivity" />
+
+    <fragment
+        android:id="@+id/transactionHistoryDetail"
+        android:name="com.example.latihan.TransactionHistoryDetail"
+        android:label="Transaction History Detail Fragment" >
+        <argument
+            android:name="transactionId"
+            app:argType="integer" />
+    </fragment>
+
+
+
+
+
+</navigation>

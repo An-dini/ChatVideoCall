@@ -25,7 +25,7 @@ class DoctorDetailActivity : AppCompatActivity()
             binding.instance.text = doctor.instance
             binding.ratingBar.rating = doctor.rating
 
-            val schedules = doctor.schedule.joinToString("\n") { it + " WIB" }
+            val schedules = doctor.schedule
             binding.schedule.text = schedules
         }
     }

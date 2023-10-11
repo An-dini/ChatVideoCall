@@ -9,8 +9,8 @@ class Doctor(
     var name: String,
     var instance: String,
     var price: String,
-    var schedule: List<String>,
-    var duration: Int,
+    var schedule: String,
+    var duration: String,
     var rating: Float,
     val id: Int? = doctorList.size
 )

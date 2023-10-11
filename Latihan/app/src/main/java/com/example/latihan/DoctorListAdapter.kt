@@ -1,29 +1,35 @@
 package com.example.latihan
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.latihan.databinding.DoctorListItemBinding
 
-class DoctorListAdapter(private val doctors: List<Doctor>, private val clickListener: DoctorClickListener
-)
-: RecyclerView.Adapter<CardViewHolder>()
+class DoctorListAdapter(private val doctors: List<Doctor>, private val clickListener: DoctorClickListener) :
+    RecyclerView.Adapter<DoctorListAdapter.ViewHolder>()
 {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder
-    {
-        val from = LayoutInflater.from(parent.context)
-        val binding = DoctorListItemBinding.inflate(from, parent, false)
-        return CardViewHolder(binding, clickListener)
-    }
+    class ViewHolder(val binding: DoctorListItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onBindViewHolder(holder: CardViewHolder, position: Int)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        holder.bindDoctor(doctors[position])
+        val binding = DoctorListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun getItemCount(): Int = doctors.size
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int)
+    {
+        with(holder){
+            with(doctors[position]){
+                binding.cover.setImageResource(this.photo)
+                binding.title.text = this.name
+                binding.author.text = this.instance
+
+                binding.cardView.setOnClickListener{
+                    clickListener.onClick(this)
+                }
+            }
+        }
+    }
 }
-
-
