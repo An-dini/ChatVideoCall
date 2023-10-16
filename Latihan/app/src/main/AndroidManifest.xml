@@ -22,13 +22,13 @@
         </activity>
 
         <activity
-            android:name=".ScheduleConsultationActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".DoctorDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ScheduleConsultationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
