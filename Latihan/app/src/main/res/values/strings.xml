@@ -4,17 +4,15 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!--    list payment-->
-    <string-array name="payment_name">
-        <item>DANA</item>
-        <item>GoPay</item>
-        <item>ShopeePay</item>
-        <item>OVO</item>
-        <item>LinkAja</item>
-        <item>Mandiri</item>
-        <item>BCA</item>
-        <item>BRI</item>
-        <item>BNI</item>
-    </string-array>
+    <string name="dana">Dana</string>
+    <string name="ovo">OVO</string>
+    <string name="gopay">Gopay</string>
+    <string name="shopeepay">ShopeePay</string>
+    <string name="linkaja">LinkAja</string>
+    <string name="mandiri">Mandiri</string>
+    <string name="bca">BCA</string>
+    <string name="bri">BRI</string>
+    <string name="bni">BNI</string>
 
     <!--    Data transactions-->
 

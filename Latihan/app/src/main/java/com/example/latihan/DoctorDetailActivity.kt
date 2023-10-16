@@ -1,7 +1,9 @@
 package com.example.latihan
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import com.example.latihan.databinding.ActivityDoctorDetailBinding
 
 class DoctorDetailActivity : AppCompatActivity()
@@ -27,6 +29,12 @@ class DoctorDetailActivity : AppCompatActivity()
 
             val schedules = doctor.schedule
             binding.schedule.text = schedules
+        }
+
+        val btKonsultasi: Button = findViewById(R.id.bt_consultation)
+        btKonsultasi.setOnClickListener {
+            val intent = Intent(this, ScheduleConsultationActivity::class.java)
+            startActivity(intent)
         }
     }
 

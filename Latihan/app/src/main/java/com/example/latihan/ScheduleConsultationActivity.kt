@@ -1,7 +1,11 @@
 package com.example.latihan
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.CalendarView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +17,8 @@ import kotlin.collections.ArrayList
 class ScheduleConsultationActivity : AppCompatActivity() {
     private lateinit var dateRecyclerView: RecyclerView
     private val dateList = ArrayList<DateModel>()
+    private lateinit var btSchedule: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +29,7 @@ class ScheduleConsultationActivity : AppCompatActivity() {
 
         // Inisialisasi daftar tanggal
         val dateCalendar = Calendar.getInstance()
-        for (i in 0 until 5) {
+        for (i in 0 until 4) {
             dateList.add(
                 DateModel(
                     SimpleDateFormat("dd", Locale.getDefault()).format(dateCalendar.time),
@@ -130,6 +136,15 @@ class ScheduleConsultationActivity : AppCompatActivity() {
 
         val timeAdapterMalam = TimeAdapter(timeListMalam)
         timeRecyclerViewMalam.adapter = timeAdapterMalam
+
+        // button schedule
+        btSchedule = findViewById(R.id.scheduleButton)
+
+        btSchedule.setOnClickListener {
+            val intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     // Fungsi untuk menampilkan pesan Toast

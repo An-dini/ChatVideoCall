@@ -43,41 +43,60 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/doctorImageView"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/aji"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/baseCover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/informationLayout"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:cardCornerRadius="6dp">
+
+                    <ImageView
+                        android:id="@+id/doctorImageView"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/aji"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="apa"/>
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/tvDoctorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:text="Drh. Aji"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toTopOf="@+id/tvInstanceName"
-                    app:layout_constraintStart_toEndOf="@+id/doctorImageView" />
+                    app:layout_constraintStart_toEndOf="@+id/baseCover" />
 
                 <TextView
                     android:id="@+id/tvInstanceName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:text="OJ Pet Care"
                     android:textColor="@color/orange"
-                    app:layout_constraintStart_toEndOf="@+id/doctorImageView"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/baseCover"
                     app:layout_constraintTop_toBottomOf="@+id/tvDoctorName" />
+
                 <TextView
                     android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="12dp"
                     android:text="Rp130.000"
-                    app:layout_constraintStart_toEndOf="@+id/doctorImageView"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInstanceName"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="@+id/informationLayout"
-                    android:layout_marginBottom="12dp"/>
+                    app:layout_constraintStart_toEndOf="@+id/baseCover"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInstanceName" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Bagian untuk memilih tanggal konsultasi -->
@@ -93,13 +112,32 @@
                 android:layout_below="@+id/informationLayout"
                 android:layout_marginTop="32dp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dateRecyclerView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/labelTanggal"
-                android:layout_marginTop="16dp"
-                tools:listitem="@layout/date_item"/>
+                android:orientation="horizontal">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/dateRecyclerView"
+                    android:layout_width="275dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/labelTanggal"
+                    android:layout_marginTop="16dp"
+                    tools:listitem="@layout/date_item"/>
+
+                <include
+                    android:id="@+id/calendarCardView"
+                    layout="@layout/calendar_item"
+                    android:layout_marginTop="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
             <!-- Bagian untuk memilih jam konsultasi -->
 
@@ -246,7 +284,7 @@
                 <!-- Button untuk membuat jadwal -->
                 <Button
                     android:id="@+id/scheduleButton"
-                    android:layout_width="200dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/orange"
                     android:textColor="@color/white"
