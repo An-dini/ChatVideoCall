@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -47,7 +46,8 @@ class PaymentActivity : AppCompatActivity() {
 
         val btpay = findViewById(R.id.btPay) as Button
         btpay.setOnClickListener {
-            replaceFragment(TransactionHistoryFragment())
+            val intent = Intent(this@PaymentActivity, MainActivity::class.java)
+            startActivity(intent)
         }
 
         val backButton = findViewById(R.id.btPrev) as ImageView
@@ -56,11 +56,5 @@ class PaymentActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-    }
-    private fun replaceFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment,fragment)
-        fragmentTransaction.commit()
     }
 }

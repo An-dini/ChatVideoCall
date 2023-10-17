@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.latihan.databinding.ActivityDoctorDetailBinding
 
 class DoctorDetailActivity : AppCompatActivity()
@@ -55,5 +56,3 @@ class DoctorDetailActivity : AppCompatActivity()
         return null
     }
 }
-
-

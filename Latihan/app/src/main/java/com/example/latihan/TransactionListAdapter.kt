@@ -22,6 +22,7 @@ class TransactionListAdapter(private val transactions: List<Transaction>, privat
     }
 
     override fun getItemCount(): Int = transactions.size
+
 }
 
 

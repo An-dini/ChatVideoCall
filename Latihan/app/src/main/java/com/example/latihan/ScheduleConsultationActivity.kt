@@ -17,6 +17,7 @@ import kotlin.collections.ArrayList
 class ScheduleConsultationActivity : AppCompatActivity() {
     private lateinit var dateRecyclerView: RecyclerView
     private val dateList = ArrayList<DateModel>()
+    private var selectedTime: String? = null
     private lateinit var btSchedule: Button
 
 
@@ -126,16 +127,100 @@ class ScheduleConsultationActivity : AppCompatActivity() {
 
         // Inisialisasi adapter dan atur RecyclerView untuk waktu pagi, siang, sore, dan malam
         val timeAdapterPagi = TimeAdapter(timeListPagi)
+        val timeAdapterSiang = TimeAdapter(timeListSiang)
+        val timeAdapterSore = TimeAdapter(timeListSore)
+        val timeAdapterMalam = TimeAdapter(timeListMalam)
         timeRecyclerViewPagi.adapter = timeAdapterPagi
 
-        val timeAdapterSiang = TimeAdapter(timeListSiang)
+        timeAdapterPagi.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimePagi = timeListPagi[position].time
+                if (selectedTime != selectedTimePagi) {
+                    // Jika waktu pagi yang berbeda dipilih, update selectedTime
+                    selectedTime = selectedTimePagi
+
+                    // Atur pemilihan pada adapter waktu pagi
+                    timeAdapterPagi.setSelectedItemPosition(position)
+
+                    // Reset pemilihan di adapter waktu siang
+                    timeAdapterSiang.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu sore
+                    timeAdapterSore.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu malam
+                    timeAdapterMalam.setSelectedItemPosition(-1)
+                }
+            }
+        })
+
+
+
         timeRecyclerViewSiang.adapter = timeAdapterSiang
 
-        val timeAdapterSore = TimeAdapter(timeListSore)
+        timeAdapterSiang.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimeSiang = timeListSiang[position].time
+                if (selectedTime != selectedTimeSiang) {
+                    // Jika waktu pagi yang berbeda dipilih, update selectedTime
+                    selectedTime = selectedTimeSiang
+
+                    // Atur pemilihan pada adapter waktu pagi
+                    timeAdapterSiang.setSelectedItemPosition(position)
+
+                    // Reset pemilihan di adapter waktu siang
+                    timeAdapterPagi.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu sore
+                    timeAdapterSore.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu malam
+                    timeAdapterMalam.setSelectedItemPosition(-1)
+                }
+            }
+        })
+
+
         timeRecyclerViewSore.adapter = timeAdapterSore
 
-        val timeAdapterMalam = TimeAdapter(timeListMalam)
+        timeAdapterSore.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimeSore = timeListSore[position].time
+                if (selectedTime != selectedTimeSore) {
+                    // Jika waktu pagi yang berbeda dipilih, update selectedTime
+                    selectedTime = selectedTimeSore
+
+                    // Atur pemilihan pada adapter waktu pagi
+                    timeAdapterSore.setSelectedItemPosition(position)
+
+                    // Reset pemilihan di adapter waktu siang
+                    timeAdapterPagi.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu sore
+                    timeAdapterSiang.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu malam
+                    timeAdapterMalam.setSelectedItemPosition(-1)
+                }
+            }
+        })
+
+
         timeRecyclerViewMalam.adapter = timeAdapterMalam
+
+        timeAdapterMalam.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimeMalam = timeListMalam[position].time
+                if (selectedTime != selectedTimeMalam) {
+                    // Jika waktu pagi yang berbeda dipilih, update selectedTime
+                    selectedTime = selectedTimeMalam
+
+                    // Atur pemilihan pada adapter waktu pagi
+                    timeAdapterMalam.setSelectedItemPosition(position)
+
+                    // Reset pemilihan di adapter waktu siang
+                    timeAdapterPagi.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu sore
+                    timeAdapterSiang.setSelectedItemPosition(-1)
+                    // Reset pemilihan di adapter waktu malam
+                    timeAdapterSore.setSelectedItemPosition(-1)
+                }
+            }
+        })
 
         // button schedule
         btSchedule = findViewById(R.id.scheduleButton)
@@ -157,4 +242,5 @@ class ScheduleConsultationActivity : AppCompatActivity() {
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
 }
