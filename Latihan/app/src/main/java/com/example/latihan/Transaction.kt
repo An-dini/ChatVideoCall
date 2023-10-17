@@ -10,7 +10,7 @@ data class Transaction(
     val rating: Float,
     val date: String,
     val time: String,
-    val price: String,
+    val price: Int,
     val paymentMethod: String,
     val id: Int? = transactionList.size
 )

@@ -39,7 +39,7 @@ class TransactionHistoryDetail : Fragment() {
             binding.instance.text = transaction.instance
             binding.date.text = transaction.date
             binding.time.text = transaction.time
-            binding.price.text = transaction.price
+            binding.price.text = transaction.price.toString()
             binding.ratingBar.rating = transaction.rating
         }
         btNewSchedule.setOnClickListener {

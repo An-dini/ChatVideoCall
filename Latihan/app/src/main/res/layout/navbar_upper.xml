@@ -4,14 +4,7 @@
     android:layout_height="104dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/base_orange"
-    android:padding="16dp">
-
-<!--    <ImageButton-->
-<!--        android:id="@+id/btPrev"-->
-<!--        android:layout_width="25dp"-->
-<!--        android:layout_height="25dp"-->
-<!--        android:src="@drawable/ic_left"-->
-<!--        android:background="@android:color/transparent"/>-->
+    android:paddingVertical="16dp">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -25,14 +18,15 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
+        android:id="@+id/tvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Pilih veneritarian mu"
-        android:textStyle="italic"
         android:textColor="@color/white"
         android:textSize="14sp"
-        android:layout_marginStart="8dp"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
