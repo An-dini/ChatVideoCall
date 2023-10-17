@@ -3,9 +3,8 @@ package com.example.latihan
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.CalendarView
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class ScheduleConsultationActivity : AppCompatActivity() {
     private lateinit var dateRecyclerView: RecyclerView
@@ -143,6 +143,12 @@ class ScheduleConsultationActivity : AppCompatActivity() {
         btSchedule.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
             startActivity(intent)
+        }
+
+        val backButton = findViewById(R.id.btPrev) as ImageView
+
+        backButton.setOnClickListener {
+            onBackPressed()
         }
 
     }

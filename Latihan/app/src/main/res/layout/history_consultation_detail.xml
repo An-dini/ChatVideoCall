@@ -11,7 +11,7 @@
 
     <include
         android:id="@+id/navbarUpper"
-        layout="@layout/navbar_upper"
+        layout="@layout/navbar_upper_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />

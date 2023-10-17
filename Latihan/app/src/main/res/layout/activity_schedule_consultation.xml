@@ -10,7 +10,7 @@
 
     <include
         android:id="@+id/navbarUpper"
-        layout="@layout/navbar_upper"
+        layout="@layout/navbar_upper_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent" />
@@ -265,8 +265,8 @@
                     android:textSize="18sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintStart_toStartOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/informationPayment"/>
 
                 <TextView
                     android:id="@+id/totalPriceTextView"

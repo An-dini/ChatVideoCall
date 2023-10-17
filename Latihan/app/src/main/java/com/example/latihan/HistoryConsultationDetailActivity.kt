@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
 import com.example.latihan.databinding.HistoryConsultationDetailBinding
 
 class HistoryConsultationDetailActivity : AppCompatActivity() {
@@ -42,6 +43,12 @@ class HistoryConsultationDetailActivity : AppCompatActivity() {
         btConsultationHistory.setOnClickListener {
             val intent = Intent(this, PaymentActivity::class.java)
             startActivity(intent)
+        }
+
+        val backButton = findViewById(R.id.btPrev) as ImageView
+
+        backButton.setOnClickListener {
+            onBackPressed()
         }
 
     }

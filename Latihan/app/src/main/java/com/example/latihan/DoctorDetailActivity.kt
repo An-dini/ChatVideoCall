@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import com.example.latihan.databinding.ActivityDoctorDetailBinding
 
 class DoctorDetailActivity : AppCompatActivity()
@@ -22,7 +23,7 @@ class DoctorDetailActivity : AppCompatActivity()
         {
             binding.cover.setImageResource(doctor.photo)
             binding.price.text = doctor.price
-            binding.duration.text = "${doctor.duration} minutes"
+            binding.duration.text = "${doctor.duration} menit"
             binding.name.text = doctor.name
             binding.instance.text = doctor.instance
             binding.ratingBar.rating = doctor.rating
@@ -35,6 +36,12 @@ class DoctorDetailActivity : AppCompatActivity()
         btKonsultasi.setOnClickListener {
             val intent = Intent(this, ScheduleConsultationActivity::class.java)
             startActivity(intent)
+        }
+
+        val backButton = findViewById(R.id.btPrev) as ImageView
+
+        backButton.setOnClickListener {
+            onBackPressed()
         }
     }
 

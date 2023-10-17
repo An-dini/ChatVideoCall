@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.latihan.TransactionHistoryFragmentDirections
 import com.example.latihan.databinding.FragmentTransactionHistoryDetailBinding
 
 
@@ -28,6 +28,7 @@ class TransactionHistoryDetail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         btNewSchedule = binding.btNewSchedule
         btConsultationHistory = binding.btConsultationHistory
+        var btBack: ImageView = binding.navbarUpper.btPrev
 
         val args: TransactionHistoryDetailArgs by navArgs()
         val transactionID = args.transactionId
@@ -47,6 +48,11 @@ class TransactionHistoryDetail : Fragment() {
         btConsultationHistory.setOnClickListener {
             findNavController().navigate(R.id.transactionHistoryFragment)
         }
+
+        btBack.setOnClickListener {
+            getActivity()?.onBackPressed();
+        }
+
     }
     private fun getTransactionFromID(transactionID: Int): Transaction? {
         for(transaction in transactionList)
