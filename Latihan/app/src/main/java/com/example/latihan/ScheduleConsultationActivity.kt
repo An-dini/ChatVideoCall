@@ -1,33 +1,62 @@
 package com.example.latihan
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.latihan.databinding.ActivityScheduleConsultationBinding
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-
 
 class ScheduleConsultationActivity : AppCompatActivity() {
-    private lateinit var dateRecyclerView: RecyclerView
-    private val dateList = ArrayList<DateModel>()
+    private lateinit var binding: ActivityScheduleConsultationBinding
     private lateinit var btSchedule: Button
-
+    private var selectedTime: String? = null
+    private var selectedDate: String? = null
+    private val dateList = ArrayList<DateModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_schedule_consultation)
+        binding = ActivityScheduleConsultationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        dateRecyclerView = findViewById(R.id.dateRecyclerView)
+        val tvTitle: TextView = findViewById(R.id.tvTitle)
+        val tvSubtitle: TextView = findViewById(R.id.tvSubtitle)
+
+        tvTitle.text = "Buat Jadwal Konsultasi"
+        tvSubtitle.text = "Atur jadwal konsultasi kamu"
+
+
+        val doctorID = intent.getIntExtra(DOCTOR_ID_EXTRA, -1)
+        val doctor = doctorFromID(doctorID)
+
+        val cover: ImageView = findViewById(R.id.doctorImageView)
+        val name: TextView = findViewById(R.id.tvDoctorName)
+        val instance: TextView = findViewById(R.id.tvInstanceName)
+        val price: TextView = findViewById(R.id.tvPrice)
+
+        if (doctor != null) {
+            cover.setImageResource(doctor.photo)
+            name.text = doctor.name
+            instance.text = doctor.instance
+            price.text = doctor.price
+
+            setupDateRecyclerView()
+            setupTimeRecyclerViews()
+            setupScheduleButton()
+        }
+    }
+
+    private fun setupDateRecyclerView() {
+        val dateRecyclerView = binding.dateRecyclerView
         dateRecyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        // Inisialisasi daftar tanggal
         val dateCalendar = Calendar.getInstance()
         for (i in 0 until 4) {
             dateList.add(
@@ -39,21 +68,19 @@ class ScheduleConsultationActivity : AppCompatActivity() {
             dateCalendar.add(Calendar.DAY_OF_MONTH, 1)
         }
 
-        // Inisialisasi adapter dan atur RecyclerView untuk tanggal
         val dateAdapter = DateAdapter(dateList)
         dateRecyclerView.adapter = dateAdapter
 
-        // Mendengarkan tindakan pemilihan tanggal
         dateAdapter.setOnItemClickListener(object : DateAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-                // Tindakan saat pengguna memilih tanggal
                 val selectedDate = dateList[position]
-                // Misalnya, Anda dapat menampilkan tanggal yang dipilih dalam pesan Toast
                 showToast("Tanggal dipilih: ${selectedDate.date}")
+                updateTotalPriceUI()
             }
         })
+    }
 
-            // Inisialisasi RecyclerView untuk jam konsultasi pagi
+    private fun setupTimeRecyclerViews() {
         val timeRecyclerViewPagi: RecyclerView = findViewById(R.id.timeRecyclerView)
         timeRecyclerViewPagi.layoutManager = GridLayoutManager(this, 5)
 
@@ -126,17 +153,83 @@ class ScheduleConsultationActivity : AppCompatActivity() {
 
         // Inisialisasi adapter dan atur RecyclerView untuk waktu pagi, siang, sore, dan malam
         val timeAdapterPagi = TimeAdapter(timeListPagi)
+        val timeAdapterSiang = TimeAdapter(timeListSiang)
+        val timeAdapterSore = TimeAdapter(timeListSore)
+        val timeAdapterMalam = TimeAdapter(timeListMalam)
         timeRecyclerViewPagi.adapter = timeAdapterPagi
 
-        val timeAdapterSiang = TimeAdapter(timeListSiang)
+        timeAdapterPagi.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimePagi = timeListPagi[position].time
+                if (selectedTime != selectedTimePagi) {
+                    selectedTime = selectedTimePagi
+
+                    timeAdapterPagi.setSelectedItemPosition(position)
+
+                    timeAdapterSiang.setSelectedItemPosition(-1)
+                    timeAdapterSore.setSelectedItemPosition(-1)
+                    timeAdapterMalam.setSelectedItemPosition(-1)
+                }
+                updateTotalPriceUI()
+            }
+        })
+
+
+
         timeRecyclerViewSiang.adapter = timeAdapterSiang
 
-        val timeAdapterSore = TimeAdapter(timeListSore)
+        timeAdapterSiang.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimeSiang = timeListSiang[position].time
+                if (selectedTime != selectedTimeSiang) {
+                    selectedTime = selectedTimeSiang
+
+                    timeAdapterSiang.setSelectedItemPosition(position)
+
+                    timeAdapterPagi.setSelectedItemPosition(-1)
+                    timeAdapterSore.setSelectedItemPosition(-1)
+                    timeAdapterMalam.setSelectedItemPosition(-1)
+                }
+                updateTotalPriceUI()
+            }
+        })
+
+
         timeRecyclerViewSore.adapter = timeAdapterSore
 
-        val timeAdapterMalam = TimeAdapter(timeListMalam)
+        timeAdapterSore.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimeSore = timeListSore[position].time
+                if (selectedTime != selectedTimeSore) {
+                    selectedTime = selectedTimeSore
+
+                    timeAdapterSore.setSelectedItemPosition(position)
+
+                    timeAdapterPagi.setSelectedItemPosition(-1)
+                    timeAdapterSiang.setSelectedItemPosition(-1)
+                    timeAdapterMalam.setSelectedItemPosition(-1)
+                }
+                updateTotalPriceUI()
+            }
+        })
+
+
         timeRecyclerViewMalam.adapter = timeAdapterMalam
 
+        timeAdapterMalam.setOnItemClickListener(object : TimeAdapter.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                val selectedTimeMalam = timeListMalam[position].time
+                if (selectedTime != selectedTimeMalam) {
+                    selectedTime = selectedTimeMalam
+                    timeAdapterMalam.setSelectedItemPosition(position)
+
+                    timeAdapterPagi.setSelectedItemPosition(-1)
+                    timeAdapterSiang.setSelectedItemPosition(-1)
+                    timeAdapterSore.setSelectedItemPosition(-1)
+                }
+                updateTotalPriceUI()
+            }
+        })
         // button schedule
         btSchedule = findViewById(R.id.scheduleButton)
 
@@ -150,11 +243,39 @@ class ScheduleConsultationActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             onBackPressed()
         }
-
     }
 
-    // Fungsi untuk menampilkan pesan Toast
+    private fun setupScheduleButton() {
+        val btSchedule = binding.scheduleButton
+        btSchedule.setOnClickListener {
+            val intent = Intent(this, PaymentActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun updateTotalPriceUI() {
+        val consultationPrice = 130_000.0 // Harga konsultasi tetap
+        val totalPrice = consultationPrice
+
+        val totalPriceTextView = findViewById<TextView>(R.id.totalPriceTextView)
+        if (selectedDate != null || selectedTime != null) {
+            totalPriceTextView.text = "Rp$totalPrice"
+        } else {
+            totalPriceTextView.text = "-" // Tampilkan teks kosong jika belum ada tanggal atau waktu yang dipilih
+        }
+    }
+
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun doctorFromID(doctorID: Int): Doctor?
+    {
+        for(doctor in doctorList)
+        {
+            if(doctor.id == doctorID)
+                return doctor
+        }
+        return null
     }
 }

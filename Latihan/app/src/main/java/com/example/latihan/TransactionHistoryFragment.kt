@@ -2,10 +2,12 @@ package com.example.latihan
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.latihan.databinding.FragmentTransactionHistoryBinding
 
@@ -25,17 +27,28 @@ class TransactionHistoryFragment : Fragment(), TransactionClickListener {
         super.onViewCreated(view, savedInstanceState)
         transactions()
         setupRecyclerView()
+
+        val tvTitle: TextView = binding.navbarUpper.tvTitle
+        val tvSubtitle: TextView = binding.navbarUpper.tvSubtitle
+
+        tvTitle.text = "Riwayat Konsultasi"
+        tvSubtitle.text = "Detail konsultasi mu"
+
     }
 
     override fun onClick(transaction: Transaction) {
         val intent = Intent(requireContext(), HistoryConsultationDetailActivity::class.java)
-        intent.putExtra("transactionId", transaction.id)
+        intent.putExtra(TRANSACTION_ID_EXTRA, transaction.id)
+        Log.d("HistoryConsultationDetailActivity", "Transaction ID sent: ${transaction.id}") // Tambahkan log ini
         startActivity(intent)
     }
+
+
+
     private fun transactions(){
         val doctorName = resources.getStringArray(R.array.doctor_name_trans)
         val doctorInstance = resources.getStringArray(R.array.doctor_instance_trans)
-        val priceTrans = resources.getString(R.string.price_trans)
+        val priceTrans = resources.getInteger(R.integer.price_trans)
         val ratingTrans = resources.getStringArray(R.array.rating_trans)
         val dateTrans = resources.getStringArray(R.array.date_trans)
         val timeTrans = resources.getStringArray(R.array.time_trans)
@@ -51,7 +64,8 @@ class TransactionHistoryFragment : Fragment(), TransactionClickListener {
                 dateTrans[i],
                 timeTrans[i],
                 priceTrans,
-                paymentMethod[i]
+                paymentMethod[i],
+                id = transactionList.size
             )
             transactionList.add(transaction)
         }

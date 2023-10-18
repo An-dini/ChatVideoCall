@@ -61,7 +61,7 @@
         <item>08:00-09:00</item>
     </string-array>
 
-    <string name="price_trans">Rp130.000</string>
+    <integer name="price_trans">130000</integer>
 
     <string-array name="payment_trans">
         <item>DANA</item>

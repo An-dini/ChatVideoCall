@@ -1,16 +1,19 @@
 package com.example.latihan
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import androidx.fragment.app.Fragment
+import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 class PaymentActivity : AppCompatActivity() {
+
+    private lateinit var paymentMethodsAdapter: PaymentMethodsAdapter
+    private var isExpanded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,34 +23,49 @@ class PaymentActivity : AppCompatActivity() {
 
         // Create the list of PaymentMethodModel items
         val paymentMethodsList = listOf(
-            PaymentMethodModel(R.drawable.ic_dana_logo),
-            PaymentMethodModel(R.drawable.ic_ovo_logo),
-            PaymentMethodModel(R.drawable.ic_gopay_logo),
-            PaymentMethodModel(R.drawable.ic_shopeepay_logo),
-            PaymentMethodModel(R.drawable.ic_linkaja_logo),
-            PaymentMethodModel(R.drawable.ic_mandiri_logo),
-            PaymentMethodModel(R.drawable.ic_bca_logo),
-            PaymentMethodModel(R.drawable.ic_bri_logo),
-            PaymentMethodModel(R.drawable.ic_bni_logo)
+            PaymentMethodModel(R.drawable.ic_dana_logo,"DANA"),
+            PaymentMethodModel(R.drawable.ic_ovo_logo, "OVO"),
+            PaymentMethodModel(R.drawable.ic_gopay_logo, "GOPAY"),
+            PaymentMethodModel(R.drawable.ic_shopeepay_logo, "ShopeePay"),
+            PaymentMethodModel(R.drawable.ic_linkaja_logo, "LinkAja"),
+            PaymentMethodModel(R.drawable.ic_mandiri_logo, "Mandiri"),
+            PaymentMethodModel(R.drawable.ic_bca_logo, "BCA"),
+            PaymentMethodModel(R.drawable.ic_bri_logo, "BRI"),
+            PaymentMethodModel(R.drawable.ic_bni_logo, "BNI")
         )
 
         // Create and set the adapter for the RecyclerView
-        val paymentMethodsAdapter = PaymentMethodsAdapter(paymentMethodsList)
+        paymentMethodsAdapter = PaymentMethodsAdapter(paymentMethodsList)
+        paymentMethodsAdapter.setPaymentNameTextView(findViewById(R.id.paymentName)) // Inisialisasi paymentNameTextView
         paymentMethodsRecyclerView.adapter = paymentMethodsAdapter
+
+        val tvTitle: TextView = findViewById(R.id.tvTitle)
+        val tvSubtitle: TextView = findViewById(R.id.tvSubtitle)
+
+        tvTitle.text = "Pembayaran"
+        tvSubtitle.text = " "
+
 
         // Use a GridLayoutManager for a grid layout
         paymentMethodsRecyclerView.layoutManager = GridLayoutManager(this, 5)
 
         val viewMoreButton: Button = findViewById(R.id.viewMoreButton)
+
         viewMoreButton.setOnClickListener {
-            // Ketika "lihat selengkapnya" diklik
+            isExpanded = !isExpanded
             paymentMethodsAdapter.expandList()
-            viewMoreButton.visibility = View.GONE // Sembunyikan tombol setelah diklik
+            if (isExpanded) {
+                viewMoreButton.text = "Sembunyikan"
+            } else {
+                viewMoreButton.text = "Lainnya"
+            }
         }
 
         val btpay = findViewById(R.id.btPay) as Button
         btpay.setOnClickListener {
-            replaceFragment(TransactionHistoryFragment())
+            val intent = Intent(this@PaymentActivity, MainActivity::class.java)
+            intent.putExtra("transaction_data", true) // Sinyal untuk kembali ke beranda
+            startActivity(intent)
         }
 
         val backButton = findViewById(R.id.btPrev) as ImageView
@@ -55,12 +73,5 @@ class PaymentActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             onBackPressed()
         }
-
-    }
-    private fun replaceFragment(fragment: Fragment){
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.nav_host_fragment,fragment)
-        fragmentTransaction.commit()
     }
 }
